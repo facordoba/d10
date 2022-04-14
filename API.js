@@ -44,4 +44,4 @@ class API{
         }else return {error: 'producto no encontrado'}
     }
 }
-export default API
+module.exports = {API}

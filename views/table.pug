@@ -1,0 +1,13 @@
+html 
+    head 
+        title="productos"
+    body 
+        h2="tabla"
+        ul 
+            if products.error   
+                li="producto no encontrado"
+            else 
+                each val in products
+                    li= "title: " + val.title + " price: " + val.price + " thumbnail: " +  val.thumbnail
+        a(href="http://localhost:8080/")
+            button="volver al formulario" 

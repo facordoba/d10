@@ -1,16 +1,17 @@
-import express from 'express'
-import API from './API.js'
+const express = require('express')
+const {API} = require('./api')
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-
 app.set('view engine', 'ejs')
 
 const apiClass = new API()
+
 app.get('/',(req, res)=>{
     res.render('index')
 })
+
 app.get('/productos', (req, res)=>{
     res.render('table', {products: apiClass.getAll()})
 })
