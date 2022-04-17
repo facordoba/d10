@@ -1,19 +1,23 @@
 const express = require('express')
 const {API} = require('./api')
+const handlebars = require('express-handlebars')
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.set('view engine', 'ejs')
+app.engine('handlebars', handlebars.engine());
+app.set('views engine', 'handlebars');
+app.set('views', './views')
 
 const apiClass = new API()
 
 app.get('/',(req, res)=>{
-    res.render('index')
+    res.render('index.handlebars')
 })
 
 app.get('/productos', (req, res)=>{
-    res.render('table', {products: apiClass.getAll()})
+    console.log(apiClass.getAll())
+    res.render('table.handlebars', {products: apiClass.getAll()})
 })
 
 app.post('/',(req, res)=>{
